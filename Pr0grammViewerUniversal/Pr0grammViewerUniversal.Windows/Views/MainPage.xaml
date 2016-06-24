@@ -1,0 +1,144 @@
+﻿<storeApps1:VisualStateAwarePage x:Class="Pr0grammViewerUniversal.Views.MainPage"
+                                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:converter="using:Pr0grammViewerUniversal.Converter"
+                                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                 xmlns:extendedClasses="using:Pr0grammViewerUniversal.ExtendedClasses"
+                                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                 xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+                                 xmlns:storeApps1="using:Microsoft.Practices.Prism.StoreApps"
+                                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                 mvvm:ViewModelLocator.AutoWireViewModel="True"
+                                 mc:Ignorable="d">
+    <storeApps1:VisualStateAwarePage.Resources>
+        <extendedClasses:LocalizedStrings x:Key="LocalizedStrings" />
+        <converter:MarkToColorConverter x:Key="MarkToColorConverter" />
+        <converter:DatetimeAgoConverter x:Key="DatetimeAgoConverter" />
+
+        <DataTemplate x:Key="ListItemTemplate">
+            <Grid Width="380" HorizontalAlignment="Stretch">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Border Grid.RowSpan="5"
+                        Grid.Column="0"
+                        Width="100"
+                        Height="100"
+                        VerticalAlignment="Top"
+                        BorderBrush="OrangeRed"
+                        BorderThickness="2">
+                    <Image Width="100"
+                           Height="100"
+                           Source="{Binding Thumb}"
+                           Stretch="Fill" />
+                </Border>
+                <StackPanel Grid.Row="0"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <TextBlock Margin="0 5 0 0"
+                               FontSize="15"
+                               Foreground="DarkGray"
+                               Text="{Binding ReadableCreatedTime,
+                                              Converter={StaticResource DatetimeAgoConverter}}" />
+                    <TextBlock Margin="5 5 5 0"
+                               FontSize="15"
+                               Foreground="DarkGray"
+                               Text="{Binding [FromLow],
+                                              Source={StaticResource LocalizedStrings}}" />
+                    <Border Width="15"
+                            Height="15"
+                            Margin="0 0 0 4"
+                            Background="{Binding Mark,
+                                                 Converter={StaticResource MarkToColorConverter}}"
+                            BorderBrush="Black"
+                            BorderThickness="0.5"
+                            CornerRadius="50" />
+                    <TextBlock Margin="2 0 0 0"
+                               FontSize="20"
+                               Text="{Binding User}" />
+                </StackPanel>
+
+                <StackPanel Grid.Row="1"
+                            Grid.Column="2"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <TextBlock FontSize="30" Text="{Binding Points}" />
+                    <TextBlock FontSize="30" Text="{Binding [Points], Source={StaticResource LocalizedStrings}}" />
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PicturesWithBorderItemTemplate">
+            <Grid Margin="5">
+                <Border Width="80"
+                        Height="80"
+                        VerticalAlignment="Top"
+                        BorderBrush="OrangeRed"
+                        BorderThickness="1">
+                    <Image Width="80"
+                           Height="80"
+                           Source="{Binding Thumb}"
+                           Stretch="Fill" />
+                </Border>
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PicturesWithoutBorderItemTemplate">
+            <Grid Margin="0">
+                <Image Width="90"
+                       Height="90"
+                       Source="{Binding Thumb}"
+                       Stretch="Fill" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="EfficientItemTemplate">
+            <Grid Margin="0">
+                <Image Width="180"
+                       Height="180"
+                       Source="{Binding Thumb}"
+                       Stretch="Fill" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BigViewItemTemplate">
+            <Grid Margin="0 0 0 0">
+                <Image Source="{Binding Thumb}" Stretch="Fill" />
+            </Grid>
+        </DataTemplate>
+
+        <extendedClasses:PostViewItemSelector x:Key="PostViewItemSelector"
+                                              BigViewItemTemplate="{StaticResource BigViewItemTemplate}"
+                                              EfficientItemTemplate="{StaticResource EfficientItemTemplate}"
+                                              ListItemTemplate="{StaticResource ListItemTemplate}"
+                                              PicturesWithBorderItemTemplate="{StaticResource PicturesWithBorderItemTemplate}"
+                                              PicturesWithoutBorderItemTemplate="{StaticResource PicturesWithoutBorderItemTemplate}" />
+    </storeApps1:VisualStateAwarePage.Resources>
+
+    <storeApps1:VisualStateAwarePage.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Command="{Binding Path=NavigateToSettingsCommand}"
+                          Icon="Setting"
+                          Label="{Binding [Settings],
+                                          Source={StaticResource LocalizedStrings}}" />
+        </CommandBar>
+    </storeApps1:VisualStateAwarePage.BottomAppBar>
+
+    <Grid>
+
+        <GridView Margin="0"
+                  ItemTemplateSelector="{StaticResource PostViewItemSelector}"
+                  ItemsSource="{Binding HotPosts}"
+                  Padding="0"
+                  SelectedItem="{Binding SelectedPost,
+                                         Mode=TwoWay}" />
+    </Grid>
+</storeApps1:VisualStateAwarePage>

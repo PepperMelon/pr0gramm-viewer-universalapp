@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{a5c9c9b6-0cb1-4610-8ea2-5c7d397b6c55}</SharedProjectFile_ProjectGuid>
+    <SharedProjectFile_SccProjectName>SAK</SharedProjectFile_SccProjectName>
+    <SharedProjectFile_SccAuxPath>SAK</SharedProjectFile_SccAuxPath>
+    <SharedProjectFile_SccLocalPath>SAK</SharedProjectFile_SccLocalPath>
+    <SharedProjectFile_SccProvider>SAK</SharedProjectFile_SccProvider>
+  </PropertyGroup>
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>137789af-0da6-45ca-bfdc-c7990c4d592b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Pr0grammViewerUniversal</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Constants\ApiCalls.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CommentLevelConveters\LevelWidthConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CommentLevelConveters\LevelBorderVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CommentLevelConveters\LevelColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\CommentLevelConveters\LevelMarginConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\LocalizeEnumConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\DatetimeAgoConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\MarkToColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converter\StringFormatConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\PostView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Theme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\Language.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedClasses\IncrementalObservableCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedClasses\CultureDescriptionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedClasses\LocalizedDescriptionAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedClasses\LocalizedStrings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExtendedClasses\PostViewItemSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ICommonLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IHttpRequests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IProgrammServices.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISettings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JsonAdapter\JsonPostInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\CommonLogic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\HttpRequests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Logic\ProgrammService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Comment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Post.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\PostInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\TagInfo.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\PostPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModels\SettingsPageViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Commands\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\de-DE\Resources.resw" />
+    <PRIResource Include="$(MSBuildThisFileDirectory)Strings\en-US\Resources.resw" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,125 @@
+﻿<storeApps1:VisualStateAwarePage x:Class="Pr0grammViewerUniversal.Views.SettingsPage"
+                                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:converter="using:Pr0grammViewerUniversal.Converter"
+                                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                 xmlns:extendedClasses="using:Pr0grammViewerUniversal.ExtendedClasses"
+                                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                 xmlns:mvvm="using:Microsoft.Practices.Prism.Mvvm"
+                                 xmlns:storeApps1="using:Microsoft.Practices.Prism.StoreApps"
+                                 Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                                 mvvm:ViewModelLocator.AutoWireViewModel="True"
+                                 mc:Ignorable="d">
+    <storeApps1:VisualStateAwarePage.Resources>
+        <extendedClasses:LocalizedStrings x:Key="LocalizedStrings" />
+        <converter:LocalizeEnumConverter x:Key="LocalizeEnumConverter" />
+    </storeApps1:VisualStateAwarePage.Resources>
+
+    <Grid>
+        <Pivot>
+            <PivotItem Header="{Binding [Settings], Source={StaticResource LocalizedStrings}}">
+                <ScrollViewer>
+                    <Grid Margin="12,0,12,0">
+                        <StackPanel Orientation="Vertical">
+                            <ToggleSwitch IsOn="{Binding IsSfwChecked,
+                                                         Mode=TwoWay}"
+                                          OffContent="SFW"
+                                          OnContent="SFW" />
+                            <ToggleSwitch IsOn="{Binding IsNsfwChecked,
+                                                         Mode=TwoWay}"
+                                          OffContent="NSFW"
+                                          OnContent="NSFW" />
+                            <ToggleSwitch IsOn="{Binding IsNsflChecked,
+                                                         Mode=TwoWay}"
+                                          OffContent="NSFL"
+                                          OnContent="NSFL" />
+
+                            <ComboBox x:Name="LanguageComboBox"
+                                      Header="{Binding [Language],
+                                                       Source={StaticResource LocalizedStrings}}"
+                                      SelectedItem="{Binding Language,
+                                                             Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource LocalizeEnumConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <ComboBox x:Name="ThemeComboBox"
+                                      Header="{Binding [Theme],
+                                                       Source={StaticResource LocalizedStrings}}"
+                                      SelectedItem="{Binding Theme,
+                                                             Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource LocalizeEnumConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <ComboBox x:Name="DisplayPostsComboBox"
+                                      Header="{Binding [View],
+                                                       Source={StaticResource LocalizedStrings}}"
+                                      SelectedItem="{Binding PostView,
+                                                             Mode=TwoWay}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource LocalizeEnumConverter}}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </PivotItem>
+            <PivotItem Header="{Binding [TypeFilter], Source={StaticResource LocalizedStrings}}">
+                <ScrollViewer>
+                    <Grid Margin="12,0,12,0">
+                        <StackPanel Orientation="Vertical">
+                            <ToggleSwitch IsOn="{Binding IsLoadPicturesChecked,
+                                                         Mode=TwoWay}"
+                                          OffContent="{Binding [LoadPictures],
+                                                               Source={StaticResource LocalizedStrings}}"
+                                          OnContent="{Binding [LoadPictures],
+                                                              Source={StaticResource LocalizedStrings}}" />
+                            <ToggleSwitch IsOn="{Binding IsLoadGifsChecked,
+                                                         Mode=TwoWay}"
+                                          OffContent="{Binding [LoadGifs],
+                                                               Source={StaticResource LocalizedStrings}}"
+                                          OnContent="{Binding [LoadGifs],
+                                                              Source={StaticResource LocalizedStrings}}" />
+                            <ToggleSwitch IsOn="{Binding IsLoadWebmsChecked,
+                                                         Mode=TwoWay}"
+                                          OffContent="{Binding [LoadWebms],
+                                                               Source={StaticResource LocalizedStrings}}"
+                                          OnContent="{Binding [LoadWebms],
+                                                              Source={StaticResource LocalizedStrings}}" />
+                            <ToggleSwitch IsOn="{Binding IsUsePointsChecked,
+                                                         Mode=TwoWay}"
+                                          OffContent="{Binding [Pointsfilter],
+                                                               Source={StaticResource LocalizedStrings}}"
+                                          OnContent="{Binding [Pointsfilter],
+                                                              Source={StaticResource LocalizedStrings}}" />
+                            <StackPanel Margin="0 15 0 0" Orientation="Horizontal">
+                                <TextBlock Foreground="White"
+                                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                                           Text="{Binding [From],
+                                                          Source={StaticResource LocalizedStrings}}" />
+                                <TextBox Width="70"
+                                         Margin="10 0 10 0"
+                                         InputScope="Number"
+                                         Text="{Binding Points,
+                                                        Mode=TwoWay}" />
+                                <TextBlock Foreground="White"
+                                           Style="{StaticResource GroupHeaderTextBlockStyle}"
+                                           Text="{Binding [ShowPointsOnwards],
+                                                          Source={StaticResource LocalizedStrings}}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </PivotItem>
+        </Pivot>
+    </Grid>
+</storeApps1:VisualStateAwarePage>
